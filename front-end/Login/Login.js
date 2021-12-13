@@ -16,7 +16,7 @@ form.addEventListener("submit", function (event) {
     .then((response) => {
       console.log("response:", response);
       response.json();
-      window.location.href = "Game.html";
+      window.location.href = "../Game/Game.html";
     })
     .then((data) => {
       console.log("Success:", data);
