@@ -1,36 +1,55 @@
 body {
+  padding: 0;
+  margin: 0;
+  font-family: "Press Start 2P", cursive;
+  font-size: 12px;
 }
-
+.container {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../src/computer.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
 form {
-  width: 300px;
-  height: 300px;
-  border: solid 1px;
+  color: white;
+  background-color: rgba(47, 79, 79, 0.801);
+  width: 200px;
+  height: 140px;
   position: absolute;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  top: 50%;
+  transform: translate(-52%, -100%);
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 25px;
+  justify-content: center;
+  align-items: center;
 }
-
+.username,
+.password {
+  display: flex;
+  align-items: center;
+}
 form label {
-  margin-bottom: 5px;
+  display: inline-block;
+  width: 50%;
 }
 
 form input {
-  font-size: 20px;
-  margin-bottom: 30px;
+  display: inline-block;
   border: solid 1px;
-  height: 30px;
-  padding: 10px;
+  width: 50%;
+  margin: 10px;
 }
 
 form button {
   border: none;
-  background-color: cadetblue;
-  padding: 20px;
+  background-color: rgb(140, 228, 231);
   color: white;
+  margin: 10px;
+  padding: 5px 10px;
 }
 
 button:active {

@@ -6,40 +6,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="./Game.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./Login.css" />
     <title>Document</title>
   </head>
   <body>
-    <div class="userInfo"></div>
-    <div class="achievements"></div>
-    <div class="ranking"></div>
-    <div id="container">
-      <div id="top">
-        <div id="info">
-          <div class="info-item">
-            <div>SCORE</div>
-            <div id="score"></div>
-          </div>
-          <div class="info-item">
-            <div>TARGET</div>
-            <div id="target"></div>
-          </div>
-          <div class="info-item">
-            <div>LEVEL</div>
-            <div id="level"></div>
-          </div>
-        </div>
-
-        <div id="rotateOrigin" style="left: 400px; top: 50px">
-          <div id="hook" style="width: 10px; height: 10px"></div>
-        </div>
-
-        <div id="user">
+    <div class="container">
+      <div class="left">
+        <div class="userInfo card">
           <div id="avator"></div>
-          <div id="userName"></div>
+          <div id="userName">lushushu</div>
+          <div id="exp">level:123</div>
+        </div>
+        <div class="achievementList card">
+          <h2>Achievements</h2>
         </div>
       </div>
-      <div id="mine"></div>
+
+      <div id="middle">
+        <div id="top">
+          <div id="info">
+            <div class="info-item">
+              <div>SCORE</div>
+              <div id="score"></div>
+            </div>
+            <div class="info-item">
+              <div>TARGET</div>
+              <div id="target"></div>
+            </div>
+            <div class="info-item">
+              <div>LEVEL</div>
+              <div id="level"></div>
+            </div>
+          </div>
+
+          <div id="rotateOrigin" style="left: 400px; top: 50px">
+            <div id="hook" style="width: 10px; height: 10px"></div>
+          </div>
+        </div>
+        <div id="mine"></div>
+      </div>
+      <div class="right">
+        <div class="ranking card">
+          <h2>Ranking</h2>
+        </div>
+      </div>
     </div>
+
+    <template id="achievement_template">
+      <div class="achievement">
+        <div class="achievement_left">
+          <div class="achievement_left_icon"></div>
+        </div>
+        <div class="achievement_right">
+          <h3 class="achievement_right_title"></h3>
+          <div class="achievement_right_content"></div>
+        </div>
+      </div>
+    </template>
+
+    <template id="ranking_template">
+      <div class="rank_item">
+        <div class="rank_num"></div>
+        <div class="rank_name"></div>
+        <div class="rank_score"></div>
+      </div>
+    </template>
+
     <script type="module" src="./Game.js"></script>
   </body>
 </html>

@@ -1,3 +1,5 @@
+import { renderUser, renderAchievements, renderRanking } from "./RenderData.js";
+
 let globalSpeed = 3;
 
 let sizeMin = 20;
@@ -9,19 +11,6 @@ let target = 50;
 let level = 0;
 let score = 0;
 
-class Gold {
-  constructor(param) {
-    this.value = param.value;
-    this.position = param.position;
-    this.size = param.size;
-    this.rotateDeg = param.rotateDeg;
-  }
-  position = { x: 100, y: 100 };
-  size = 20;
-  value = this.size;
-  rotateDeg;
-}
-
 let generateGoldPosition = (number) => {
   let goldIsOverlap = (gold1, gold2) => {
     let center1 = {
@@ -32,11 +21,16 @@ let generateGoldPosition = (number) => {
       x: gold2.x + (1 / 2) * gold2.size,
       y: gold2.y + (1 / 2) * gold2.size,
     };
+    let margin = 20;
     return (
-      Math.abs(center1.x - center2.x) < (1 / 2) * (gold1.size + gold2.size) &&
-      Math.abs(center1.y - center2.y) < (1 / 2) * (gold1.size + gold2.size)
+      Math.abs(center1.x - center2.x) <
+        (1 / 2) * (gold1.size + gold2.size + margin) &&
+      Math.abs(center1.y - center2.y) <
+        (1 / 2) * (gold1.size + gold2.size + margin)
     );
   };
+  let width = removePx(document.getElementById("mine").style.width);
+  let height = removePx(document.getElementById("mine").style.height);
 
   let positionList = [];
   let i = 0;
@@ -119,7 +113,7 @@ let setSpeed = (size) => {
 
 let addMoveToHook = () => {
   let hookDiv = document.getElementById("hook");
-  let container = document.getElementById("container");
+  let container = document.getElementById("middle");
   let state = "ROTATE";
   let theta = 0;
   let RADIUS = 50;
@@ -213,6 +207,10 @@ let addMoveToHook = () => {
 };
 
 window.onload = () => {
+  renderUser();
+  renderAchievements();
+  renderRanking();
+
   addGold(50);
   addMoveToHook();
   document.getElementById("score").innerHTML = score;
