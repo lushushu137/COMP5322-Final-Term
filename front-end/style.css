@@ -1,0 +1,72 @@
+body {
+  height: 100vh;
+  background: linear-gradient(#c6ffdd, #fbd786, #f7797d);
+  background-size: cover;
+}
+#container {
+  width: 800px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  border: solid 1px;
+}
+
+#top {
+  height: 100px;
+  position: relative;
+}
+#info {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgb(255, 255, 255, 0);
+}
+#hook {
+  border-radius: 50%;
+  background-color: #f12711;
+
+  position: absolute;
+  z-index: 10;
+}
+.info-item {
+  border-radius: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin: 10px;
+  font-size: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#rotateOrigin {
+  width: 10px;
+  height: 10px;
+  /* left: 400px;
+      top: 50px; */
+  z-index: 10;
+  position: relative;
+  background-color: #f12711;
+}
+
+#mine {
+  background-color: rgb(255, 243, 228, 0.5);
+  border-radius: 5%;
+  flex: auto;
+  position: relative;
+}
+
+.gold {
+  background: #ffbb54;
+  border-radius: 20%;
+}

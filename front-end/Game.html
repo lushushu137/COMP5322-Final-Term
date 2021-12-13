@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container">
+      <div id="top">
+        <div id="info">
+          <div class="info-item">
+            <div>SCORE</div>
+            <div id="score"></div>
+          </div>
+          <div class="info-item">
+            <div>TARGET</div>
+            <div id="target"></div>
+          </div>
+          <div class="info-item">
+            <div>LEVEL</div>
+            <div id="level"></div>
+          </div>
+        </div>
+
+        <div id="rotateOrigin" style="left: 400px; top: 50px">
+          <div id="hook" style="width: 10px; height: 10px"></div>
+        </div>
+
+        <div id="user">
+          <div id="avator"></div>
+          <div id="userName"></div>
+        </div>
+      </div>
+      <div id="mine"></div>
+    </div>
+    <script type="module" src="/Game.js"></script>
+  </body>
+</html>
