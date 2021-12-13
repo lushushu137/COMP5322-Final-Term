@@ -1,0 +1,53 @@
+loginAndRegister 登录/注册 fb
+{
+    "username": "123",
+    "password": "123123123"
+}
+
+
+getUserInfo 用户信息 bf
+{
+    "status":"success,fail",
+    "data": {
+        "uid":"",
+        "username":"",
+        "exp":"",
+        "process":{
+            "score":"",
+            "level":"",
+            "target":""
+        },
+        "acheivement":[{
+            "aid:":"",
+            "title":"",
+            "detail":"",
+            "icon":""
+        }]
+    },
+    "info": ""
+}
+
+getRanking 世界排行榜 bf
+{
+    "ranking":[{
+        "order":"",
+        "username":"",
+        "grade":""
+    }],
+}
+
+addAchievement 成就达成 fb
+{
+    "uid":"",
+    "achivement": "(aid)"
+}
+
+saveProcess 存档 fb
+{
+    "uid":"",
+    "process":{
+        "score":"",
+        "level":"",
+        "target":""
+    }
+}
