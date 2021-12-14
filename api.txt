@@ -11,6 +11,7 @@ getUserInfo 用户信息 bf
     "data": {
         "uid":"",
         "username":"",
+        "isNew": "",
         "exp":"",
         "process":{
             "score":"",
