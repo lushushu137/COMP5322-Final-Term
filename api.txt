@@ -10,9 +10,9 @@ getUserInfo 用户信息 bf
     "status":"success,fail",
     "data": {
         "uid":"",
+        "avatar":"",
         "username":"",
         "isNew": "",
-        "exp":"",
         "process":{
             "score":"",
             "level":"",

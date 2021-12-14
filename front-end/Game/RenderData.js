@@ -1,25 +1,3 @@
-let achievementList = [
-  {
-    title: "achive1",
-    detail: "detail1",
-    img: "",
-  },
-  {
-    title: "achive2",
-    detail: "detail2",
-    img: "",
-  },
-  {
-    title: "achive3",
-    detail: "detail3",
-    img: "",
-  },
-  {
-    title: "achive4",
-    detail: "detail4",
-    img: "",
-  },
-];
 let rankingList = [
   {
     order: "1",
@@ -37,20 +15,41 @@ let rankingList = [
     grade: "5000",
   },
 ];
+export let renderUser = () => {
+  let userInfo = sessionStorage.getItem("userInfo");
+  if (userInfo) {
+    let parsedUserInfo = JSON.parse(userInfo);
+    console.log(userInfo);
+    let avatorDiv = document.querySelector("#avator");
+    let userNameDiv = document.querySelector("#userName");
 
-export let renderUser = () => {};
+    userNameDiv.textContent = parsedUserInfo.username;
+  } else {
+    console.log("未登录");
+    window.location.href = "../Login/Login.html";
+  }
+};
 
 export let renderAchievements = () => {
-  let temp = document.getElementById("achievement_template");
-  let title = temp.content.querySelector(".achievement_right_title");
-  let content = temp.content.querySelector(".achievement_right_content");
-  let achievementListDiv = document.querySelector(".achievementList");
+  console.log("renderAchievements!!!");
+  let userInfo = sessionStorage.getItem("userInfo");
+  let achievementListDiv = document.querySelector(".achievementList_itemList");
+  achievementListDiv.innerHTML = "";
+  if (userInfo) {
+    let achievementList = JSON.parse(userInfo).acheivement;
+    let temp = document.getElementById("achievement_template");
+    let title = temp.content.querySelector(".achievement_right_title");
+    let content = temp.content.querySelector(".achievement_right_content");
 
-  for (let i = 0; i < achievementList.length; i++) {
-    title.textContent = achievementList[i].title;
-    content.textContent = achievementList[i].detail;
-    let tempDiv = document.importNode(temp.content, true);
-    achievementListDiv.appendChild(tempDiv);
+    for (let i = 0; i < achievementList.length; i++) {
+      title.textContent = achievementList[i].title;
+      content.textContent = achievementList[i].detail;
+      let tempDiv = document.importNode(temp.content, true);
+      achievementListDiv.appendChild(tempDiv);
+    }
+  } else {
+    console.log("未登录");
+    window.location.href = "../Login/Login.html";
   }
 };
 

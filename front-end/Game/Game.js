@@ -1,5 +1,6 @@
 import { renderUser, renderAchievements, renderRanking } from "./RenderData.js";
-
+import { saveProcess, addAchievement } from "../queries.js";
+import { allAchievements } from "../../achievements.js";
 let globalSpeed = 3;
 
 let sizeMin = 20;
@@ -132,6 +133,10 @@ let addMoveToHook = () => {
       };
       state = "ROTATE";
     } else if (state == "EMIT") {
+      if (score === 0 && !hasAchievement("1")) {
+        // Play the game for the first time.
+        handleAchievement("1");
+      }
       RADIUS += speed;
       let x = -Math.cos(theta) * RADIUS;
       let y = Math.abs(Math.sin(theta) * RADIUS);
@@ -147,7 +152,7 @@ let addMoveToHook = () => {
         }
       }
       // 判断是否与边界相交
-      if (x < -300 || x > 300 || y > 800) {
+      if (x < -300 || x > 300 || y > 500) {
         getGold = null;
         state = "RETRIEVE";
       }
@@ -180,6 +185,14 @@ let addMoveToHook = () => {
           let parent = document.getElementById("mine");
           parent.removeChild(getGold);
           getGold = null;
+          console.log(parent.querySelectorAll(".gold"));
+          if (
+            parent.querySelectorAll(".gold").length == 0 &&
+            !hasAchievement("8")
+          ) {
+            // Clear all golds
+            handleAchievement("8");
+          }
           if (score >= target) {
             state = "SUCCESS";
           } else {
@@ -191,19 +204,64 @@ let addMoveToHook = () => {
       }
     } else if (state == "SUCCESS") {
       alert("SUCCESS");
+      if (level === 0) {
+        // Finish 1 level.
+        handleAchievement("2");
+      }
+      if (level === 1) {
+        // Finish 2 levels.
+        handleAchievement("4");
+      }
+      if (level === 2) {
+        // Finish 3 levels.
+        handleAchievement("5");
+      }
+      if (level === 3) {
+        // Finish 4 levels.
+        handleAchievement("6");
+      }
+      if (level === 4) {
+        // Finish 5 levels.
+        handleAchievement("7");
+      }
       state = "ROTATE";
       theta = 0;
       RADIUS = 50;
       speed = globalSpeed;
-      score = 0;
-      target *= 1.5;
+      target *= 2;
       level += 1;
       document.getElementById("score").innerHTML = score;
       document.getElementById("level").innerHTML = level;
       document.getElementById("target").innerHTML = target;
       addGold(50);
+      saveProcess("fakeuid", { score, target, level });
     }
   }, 10);
+};
+
+export let handleAchievement = (aid) => {
+  let userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+  if (userInfo.acheivement.length == 0) {
+    let currAch = allAchievements.find((ach) => ach.aid == aid);
+    userInfo.acheivement.unshift(currAch);
+    sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
+    renderAchievements();
+    addAchievement(aid);
+  } else {
+    if (!userInfo.acheivement.find((ach) => ach.aid == aid)) {
+      let currAch = allAchievements.find((ach) => ach.aid == aid);
+      userInfo.acheivement.unshift(currAch);
+      sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
+      renderAchievements();
+      addAchievement(aid);
+    }
+  }
+};
+
+let hasAchievement = (aid) => {
+  let userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+  if (!userInfo.acheivement) return false;
+  return userInfo.acheivement.find((ach) => ach.aid === aid);
 };
 
 window.onload = () => {

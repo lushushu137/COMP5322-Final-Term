@@ -13,19 +13,31 @@ form.addEventListener("submit", function (event) {
       "Content-Type": "application/json",
     },
   })
-    .then((response) => {
-      console.log("response:", response);
-      let res = response.json();
-      window.location.href = "../Game/Game.html";
+    .then((res) => {
+      // Mock the data
+      res = {
+        status: "success",
+        data: {
+          uid: "21212",
+          username: "Chen Yufeng",
+          isNew: "no",
+          process: {
+            score: "0",
+            level: "0",
+            target: "50",
+          },
+          acheivement: [],
+        },
+        info: "",
+      };
 
-      // if (res.status === "success") {
-      //   window.location.href = "../Game/Game.html";
-      // } else {
-      //   window.alert("res.info");
-      // }
-    })
-    .then((data) => {
-      console.log("Success:", data);
+      console.log("response:", res);
+      if (res.status === "success") {
+        sessionStorage.setItem("userInfo", JSON.stringify(res.data));
+        window.location.href = "../Game/Game.html";
+      } else {
+        window.alert(res.info);
+      }
     })
     .catch((error) => {
       console.log("Error:", error);
