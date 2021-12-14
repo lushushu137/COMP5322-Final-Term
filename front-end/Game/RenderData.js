@@ -1,28 +1,27 @@
-let rankingList = [
-  {
-    order: "1",
-    username: "lushu1",
-    grade: "10000",
-  },
-  {
-    order: "2",
-    username: "lushu2",
-    grade: "8000",
-  },
-  {
-    order: "3",
-    username: "lushu3",
-    grade: "5000",
-  },
-];
+import { getRanking } from "../queries.js";
+// let rankingList = [
+//   {
+//     order: "1",
+//     username: "lushu1",
+//     grade: "10000",
+//   },
+//   {
+//     order: "2",
+//     username: "lushu2",
+//     grade: "8000",
+//   },
+//   {
+//     order: "3",
+//     username: "lushu3",
+//     grade: "5000",
+//   },
+// ];
 export let renderUser = () => {
   let userInfo = sessionStorage.getItem("userInfo");
   if (userInfo) {
     let parsedUserInfo = JSON.parse(userInfo);
-    console.log(userInfo);
     let avatorDiv = document.querySelector("#avator");
     let userNameDiv = document.querySelector("#userName");
-
     userNameDiv.textContent = parsedUserInfo.username;
   } else {
     console.log("未登录");
@@ -30,8 +29,23 @@ export let renderUser = () => {
   }
 };
 
+export let renderProcess = () => {
+  let userInfo = sessionStorage.getItem("userInfo");
+  if (userInfo) {
+    let parsedUserInfo = JSON.parse(userInfo);
+    let scoreDiv = document.querySelector("#score");
+    let targetDiv = document.querySelector("#target");
+    let levelDiv = document.querySelector("#level");
+
+    scoreDiv.textContent = parsedUserInfo.process.score;
+    targetDiv.textContent = parsedUserInfo.process.target;
+    levelDiv.textContent = parsedUserInfo.process.level;
+  } else {
+    console.log("未登录");
+    window.location.href = "../Login/Login.html";
+  }
+};
 export let renderAchievements = () => {
-  console.log("renderAchievements!!!");
   let userInfo = sessionStorage.getItem("userInfo");
   let achievementListDiv = document.querySelector(".achievementList_itemList");
   achievementListDiv.innerHTML = "";
@@ -54,6 +68,8 @@ export let renderAchievements = () => {
 };
 
 export let renderRanking = () => {
+  getRanking();
+  let rankingList = JSON.parse(sessionStorage.getItem("rankingList"));
   let temp = document.getElementById("ranking_template");
   let rank_num = temp.content.querySelector(".rank_num");
   let rank_name = temp.content.querySelector(".rank_name");
@@ -66,7 +82,7 @@ export let renderRanking = () => {
     rank_score.textContent = rankingList[i].grade;
     console.log(rankingList[i].order);
     let tempDiv = document.importNode(temp.content, true);
-    console.log(tempDiv);
+    // console.log(tempDiv);
     rankingListDiv.appendChild(tempDiv);
   }
 };

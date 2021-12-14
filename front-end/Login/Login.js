@@ -34,6 +34,7 @@ form.addEventListener("submit", function (event) {
       console.log("response:", res);
       if (res.status === "success") {
         sessionStorage.setItem("userInfo", JSON.stringify(res.data));
+
         window.location.href = "../Game/Game.html";
       } else {
         window.alert(res.info);

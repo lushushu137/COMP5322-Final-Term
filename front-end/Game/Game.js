@@ -1,4 +1,9 @@
-import { renderUser, renderAchievements, renderRanking } from "./RenderData.js";
+import {
+  renderUser,
+  renderAchievements,
+  renderRanking,
+  renderProcess,
+} from "./RenderData.js";
 import { saveProcess, addAchievement } from "../queries.js";
 import { allAchievements } from "../../achievements.js";
 let globalSpeed = 3;
@@ -8,9 +13,9 @@ let sizeMax = 50;
 let speedMin = globalSpeed * 0.1;
 let speedMax = globalSpeed * 2;
 
-let target = 50;
-let level = 0;
-let score = 0;
+let target;
+let level;
+let score;
 
 let generateGoldPosition = (number) => {
   let goldIsOverlap = (gold1, gold2) => {
@@ -233,12 +238,28 @@ let addMoveToHook = () => {
       document.getElementById("score").innerHTML = score;
       document.getElementById("level").innerHTML = level;
       document.getElementById("target").innerHTML = target;
-      addGold(50);
+      addGold(30);
+
       saveProcess("fakeuid", { score, target, level });
+      handleProcess({ score, target, level });
     }
   }, 10);
 };
 
+let initScore = () => {
+  let userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+  target = parseInt(userInfo.process.target);
+  level = parseInt(userInfo.process.level);
+  score = parseInt(userInfo.process.score);
+  console.log("userInfo.process.target:", userInfo.process.target);
+};
+
+let handleProcess = () => {
+  let userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+  userInfo.process = { score, target, level };
+  sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
+  renderProcess();
+};
 export let handleAchievement = (aid) => {
   let userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   if (userInfo.acheivement.length == 0) {
@@ -268,10 +289,8 @@ window.onload = () => {
   renderUser();
   renderAchievements();
   renderRanking();
-
-  addGold(50);
+  renderProcess();
+  initScore();
+  addGold(30);
   addMoveToHook();
-  document.getElementById("score").innerHTML = score;
-  document.getElementById("level").innerHTML = level;
-  document.getElementById("target").innerHTML = target;
 };

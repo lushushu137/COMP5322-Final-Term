@@ -166,15 +166,17 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  font-size: 12px;
 }
 .rank_num {
-  width: 50px;
+  width: 20px;
 }
 
 .rank_name {
-  width: 100px;
+  width: 200px;
 }
 
 .rank_score {
   flex: 1;
+  text-align: right;
 }
