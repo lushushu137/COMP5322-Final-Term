@@ -15,13 +15,20 @@ form.addEventListener("submit", function (event) {
   })
     .then((response) => {
       console.log("response:", response);
-      response.json();
+      let res = response.json();
       window.location.href = "../Game/Game.html";
+
+      // if (res.status === "success") {
+      //   window.location.href = "../Game/Game.html";
+      // } else {
+      //   window.alert("res.info");
+      // }
     })
     .then((data) => {
       console.log("Success:", data);
     })
     .catch((error) => {
       console.log("Error:", error);
+      window.location.href = "../Game/Game.html";
     });
 });

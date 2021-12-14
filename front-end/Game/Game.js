@@ -36,8 +36,8 @@ let generateGoldPosition = (number) => {
   let i = 0;
   while (i < number) {
     let newGold = {
-      x: Math.random() * 715 + 15,
-      y: Math.random() * 600 + 50,
+      x: Math.random() * 515 + 25,
+      y: Math.random() * 400 + 30,
       rotateDeg: Math.floor(Math.random() * 0),
       size: Math.random() * (sizeMax - sizeMin) + sizeMin,
     };
@@ -83,7 +83,7 @@ let removePx = (str) => {
   return str ? parseFloat(str.match(/(\S*)px/)[1]) : 0;
 };
 
-let isDivHit = (gold, hook, biasx = 400, biasy = -50) => {
+let isDivHit = (gold, hook, biasx = 300, biasy = -50) => {
   let centerX1 =
     removePx(gold.style.left) + (1 / 2) * removePx(gold.style.width);
   let centerY1 =
@@ -147,7 +147,7 @@ let addMoveToHook = () => {
         }
       }
       // 判断是否与边界相交
-      if (x < -400 || x > 400 || y > 800) {
+      if (x < -300 || x > 300 || y > 800) {
         getGold = null;
         state = "RETRIEVE";
       }
