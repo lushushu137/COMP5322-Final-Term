@@ -44,6 +44,7 @@ body {
   min-width: 800px;
   box-sizing: border-box;
   border: solid 100px;
+  border-bottom: solid 150px;
   border-image: url("../src/computer_border.png") 35%;
   background-color: black;
   width: 800px;
@@ -77,7 +78,7 @@ body {
   border-radius: 10px;
 }
 .achievementList {
-  border: solid 1px;
+  /* border: solid 1px; */
 }
 .achievement {
   border: solid 1px;
@@ -85,13 +86,14 @@ body {
   display: flex;
   align-items: center;
   margin: 20px 0;
+  font-size: 12px;
 }
-.achievement_left {
+/* .achievement_left {
   width: 80px;
   height: 80px;
   border: solid 1px;
   margin-right: 10px;
-}
+} */
 .achievement_right {
   flex: 1;
   display: flex;

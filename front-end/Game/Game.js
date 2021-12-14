@@ -37,7 +37,7 @@ let generateGoldPosition = (number) => {
   while (i < number) {
     let newGold = {
       x: Math.random() * 515 + 25,
-      y: Math.random() * 400 + 30,
+      y: Math.random() * 350 + 30,
       rotateDeg: Math.floor(Math.random() * 0),
       size: Math.random() * (sizeMax - sizeMin) + sizeMin,
     };
@@ -196,7 +196,7 @@ let addMoveToHook = () => {
       RADIUS = 50;
       speed = globalSpeed;
       score = 0;
-      target *= 2;
+      target *= 1.5;
       level += 1;
       document.getElementById("score").innerHTML = score;
       document.getElementById("level").innerHTML = level;
