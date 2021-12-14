@@ -6,7 +6,7 @@ form.addEventListener("submit", function (event) {
   const entries = formData.entries();
   const data = Object.fromEntries(entries);
   console.log(data);
-  fetch("../back-end/Login.php", {
+  fetch("../../back-end/Login/CheckLoginorRegister.php", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
