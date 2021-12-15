@@ -1,3 +1,31 @@
+import { mockUserData, rankingList } from "./mockData.js";
+
+export let login = function (data) {
+  fetch("../../back-end/Login/CheckLoginorRegister.php", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      // Mock the data
+      res = mockUserData;
+      if (res.status === "success") {
+        sessionStorage.setItem("userInfo", JSON.stringify(res.data));
+        window.location.href = "../Game/Game.html";
+      } else {
+        window.alert(res.info);
+      }
+    })
+    .catch((error) => {
+      console.log("Error:", error);
+      // Test process
+      window.location.href = "../Game/Game.html";
+    });
+};
+
 export let getRanking = function () {
   fetch("../back-end/getRanking.php", {
     method: "GET",
@@ -8,21 +36,7 @@ export let getRanking = function () {
     .then((res) => res.json())
     .then((rankingList) => {
       // Mock
-      rankingList = [
-        {
-          order: "1",
-          username: "Chen Yufeng 888",
-          uid: "888",
-          grade: "1000",
-        },
-        {
-          order: "2",
-          username: "Chen Yufeng 999",
-          uid: "999",
-          grade: "800",
-        },
-        { order: "3", uid: "233", username: "Chen Yufeng233", grade: "600" },
-      ];
+      rankingList = rankingList;
       sessionStorage.setItem("rankingList", JSON.stringify(rankingList));
     })
     .catch((error) => {

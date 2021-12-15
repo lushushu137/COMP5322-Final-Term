@@ -195,7 +195,6 @@ let addMoveToHook = () => {
           let parent = document.getElementById("mine");
           parent.removeChild(getGold);
           getGold = null;
-          console.log(parent.querySelectorAll(".gold"));
           if (
             parent.querySelectorAll(".gold").length == 0 &&
             !hasAchievement("8")

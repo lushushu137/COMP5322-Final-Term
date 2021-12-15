@@ -73,7 +73,8 @@ body {
   width: 100px;
   height: 100px;
   margin: 20px;
-  border: solid 1px;
+  background: url("../src/zoomed_version_of_purplegirl.png") no-repeat;
+  background-size: 100%;
 }
 #userName {
   margin: 20px;
