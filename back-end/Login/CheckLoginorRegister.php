@@ -22,11 +22,16 @@
     // 定义注册用户信息json
     $UserRegisterJsonString = '';
 
+    echo "进入php";
+    $JsonString = json_decode(file_get_contents('php://input'), true);
+    $UserInputData['username'] = $JsonString['username'];
+    echo $JsonString;
+
     /*
     检查数据库中用户是否已存在
     */
-    function CheckData() {
-        echo "进入判断";
+    // function CheckData() {
+        // echo "进入判断";
         // 连接数据库
         // require_once("../DB/DB_Connect.php");
          $db = mysqli_connect("localhost", "root", "gvhdv456") or die("Disconnect!");
@@ -34,14 +39,18 @@
          mysqli_select_db($db, "userinfo") or die("No connect to table".mysqli_error($db));
 
         // 获取前端login.json文件的body部分
-        $JsonString  =  $_POST['data'];
+        //$JsonString  =  $_POST['data'];
         
         // json转换成PHP数组
-        $UserInputData  = json_decode($JsonString , true);
+        //$UserInputData  = json_decode($JsonString , true);
         
         // 用户输入信息是否接收成功？判断登录/注册；返回报错。
-        if (isset($UserInputData)) {
+        if (isset($JsonString)) {
             echo "成功";
+
+            // $JsonString  =  $_POST['data'];
+            // $UserInputData  = json_decode($JsonString , true);
+
             // 数据库查找username？直接登录，返回数据；注册信息，返回数据。
             if (mysqli_query($db, 'SELECT * from user where username = "$UserInputData.username"')) {
                 echo "登录";
@@ -83,5 +92,5 @@
         }
 
         mysqli_close($db);
-    }
+    // }
 ?>
