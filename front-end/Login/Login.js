@@ -13,13 +13,14 @@ form.addEventListener("submit", function (event) {
       "Content-Type": "application/json",
     },
   })
+    .then((res) => res.json())
     .then((res) => {
       // Mock the data
       res = {
         status: "success",
         data: {
-          uid: "21212",
-          username: "Chen Yufeng",
+          uid: "233",
+          username: "Chen Yufeng 233",
           isNew: "no",
           process: {
             score: "0",
