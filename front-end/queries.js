@@ -27,21 +27,24 @@ export let login = function (data) {
 };
 
 export let getRanking = function () {
-  fetch("../../back-end/Login/getRanking.php", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    // .then((res) => res.json())
-    .then((rankingList) => {
-      // Mock
-      rankingList = mockRankingList;
-      sessionStorage.setItem("rankingList", JSON.stringify(rankingList));
-    })
-    .catch((error) => {
-      console.log("Error:", error);
-    });
+  // Mock
+  let rankingList = mockRankingList;
+  sessionStorage.setItem("rankingList", JSON.stringify(rankingList));
+  // fetch("../../back-end/Login/getRanking.php", {
+  //   method: "GET",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // })
+  //   // .then((res) => res.json())
+  //   .then((rankingList) => {
+  //     // Mock
+  //     rankingList = mockRankingList;
+  //     sessionStorage.setItem("rankingList", JSON.stringify(rankingList));
+  //   })
+  //   .catch((error) => {
+  //     console.log("Error:", error);
+  //   });
 };
 export let addAchievement = function (uid, aid) {
   let data = {

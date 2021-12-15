@@ -25,5 +25,5 @@ export let mockRankingList = [
     uid: "2",
     grade: 800,
   },
-  { uid: "3", username: "User 3", grade: 200 },
+  { uid: "3", username: "User 3", grade: 160 },
 ];
