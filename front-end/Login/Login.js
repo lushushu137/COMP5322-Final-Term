@@ -6,30 +6,31 @@ form.addEventListener("submit", function (event) {
   const entries = formData.entries();
   const data = Object.fromEntries(entries);
   console.log(data);
-  fetch("../../back-end/Login/CheckLoginorRegister.php", {
+  fetch("../../back-end/Login/CheckTest.php", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
     },
   })
+  .then((res) => res.json())
     .then((res) => {
-      // Mock the data
-      res = {
-        status: "success",
-        data: {
-          uid: "21212",
-          username: "Chen Yufeng",
-          isNew: "no",
-          process: {
-            score: "0",
-            level: "0",
-            target: "50",
-          },
-          acheivement: [],
-        },
-        info: "",
-      };
+      // // Mock the data
+      // res = {
+      //   status: "success",
+      //   data: {
+      //     uid: "21212",
+      //     username: "Chen Yufeng",
+      //     isNew: "no",
+      //     process: {
+      //       score: "0",
+      //       level: "0",
+      //       target: "50",
+      //     },
+      //     acheivement: [],
+      //   },
+      //   info: "",
+      // };
 
       console.log("response:", res);
       if (res.status === "success") {
@@ -42,6 +43,6 @@ form.addEventListener("submit", function (event) {
     })
     .catch((error) => {
       console.log("Error:", error);
-      window.location.href = "../Game/Game.html";
+      // window.location.href = "../Game/Game.html";
     });
 });
