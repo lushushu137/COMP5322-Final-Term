@@ -1,21 +1,4 @@
 import { getRanking } from "../queries.js";
-// let rankingList = [
-//   {
-//     order: "1",
-//     username: "lushu1",
-//     grade: "10000",
-//   },
-//   {
-//     order: "2",
-//     username: "lushu2",
-//     grade: "8000",
-//   },
-//   {
-//     order: "3",
-//     username: "lushu3",
-//     grade: "5000",
-//   },
-// ];
 export let renderUser = () => {
   let userInfo = sessionStorage.getItem("userInfo");
   if (userInfo) {
@@ -70,19 +53,26 @@ export let renderAchievements = () => {
 export let renderRanking = () => {
   getRanking();
   let rankingList = JSON.parse(sessionStorage.getItem("rankingList"));
+  let userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   let temp = document.getElementById("ranking_template");
   let rank_num = temp.content.querySelector(".rank_num");
   let rank_name = temp.content.querySelector(".rank_name");
   let rank_score = temp.content.querySelector(".rank_score");
-  let rankingListDiv = document.querySelector(".ranking");
+  let rank_item = temp.content.querySelector(".rank_item");
 
+  let rankingListDiv = document.querySelector(".rankingList_itemList");
+  rankingListDiv.innerHTML = "";
   for (let i = 0; i < rankingList.length; i++) {
     rank_num.textContent = rankingList[i].order;
     rank_name.textContent = rankingList[i].username;
     rank_score.textContent = rankingList[i].grade;
-    console.log(rankingList[i].order);
+    if (userInfo.uid == rankingList[i].uid) {
+      console.log("userInfo.uid == rankingList[i].uid:", userInfo.uid);
+      rank_item.style.borderLeft = "solid 5px";
+    } else {
+      rank_item.style.borderLeft = "none";
+    }
     let tempDiv = document.importNode(temp.content, true);
-    // console.log(tempDiv);
     rankingListDiv.appendChild(tempDiv);
   }
 };

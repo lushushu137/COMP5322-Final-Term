@@ -13,24 +13,24 @@ form.addEventListener("submit", function (event) {
       "Content-Type": "application/json",
     },
   })
-  .then((res) => res.json())
+    .then((res) => res.json())
     .then((res) => {
-      // // Mock the data
-      // res = {
-      //   status: "success",
-      //   data: {
-      //     uid: "21212",
-      //     username: "Chen Yufeng",
-      //     isNew: "no",
-      //     process: {
-      //       score: "0",
-      //       level: "0",
-      //       target: "50",
-      //     },
-      //     acheivement: [],
-      //   },
-      //   info: "",
-      // };
+      // Mock the data
+      res = {
+        status: "success",
+        data: {
+          uid: "233",
+          username: "Chen Yufeng 233",
+          isNew: "no",
+          process: {
+            score: "0",
+            level: "0",
+            target: "50",
+          },
+          acheivement: [],
+        },
+        info: "",
+      };
 
       console.log("response:", res);
       if (res.status === "success") {

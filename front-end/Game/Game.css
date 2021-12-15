@@ -1,16 +1,20 @@
+::-webkit-scrollbar {
+  display: none; /* Chrome Safari */
+  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none; /* Firefox */
+}
 * {
   margin: 0;
   padding: 0;
   font-family: "Press Start 2P", cursive;
-  --theme-green: rgb(116, 255, 74);
-  color: var(--theme-green);
+  --theme-green: rgb(123, 238, 88);
 }
 
 body {
+  color: var(--theme-green);
   height: 100vh;
   width: 100vw;
   background-color: black;
-  color: white;
   font-size: 14px;
   line-height: 1.5em;
 }
@@ -22,6 +26,7 @@ body {
   transform: translate(-50%, -50%); */
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 @media screen and (max-width: 1440px) {
   .container {
@@ -38,6 +43,9 @@ body {
   padding: 20px;
   flex: 1;
   overflow: hidden;
+  max-height: 100vh;
+  overflow: scroll;
+  box-sizing: border-box;
 }
 #middle {
   /* border: solid 1px; */
@@ -77,7 +85,6 @@ body {
   border-radius: 10px;
 }
 .achievementList {
-  /* border: solid 1px; */
 }
 .achievement {
   border: solid 1px;
@@ -115,8 +122,8 @@ body {
   background-color: rgb(255, 255, 255, 0);
 }
 #hook {
-  border-radius: 50%;
-  background-color: var(--theme-green);
+  /* border-radius: 50%; */
+  background-color: #fff;
 
   position: absolute;
   z-index: 10;
@@ -151,7 +158,7 @@ body {
 
 .gold {
   background: var(--theme-green);
-  border-radius: 20%;
+  border-radius: 5%;
 }
 
 .ranking {
@@ -161,7 +168,7 @@ body {
 }
 .rank_item {
   margin: 5px 0px;
-  padding: 15px 0px;
+  padding: 15px 5px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -179,4 +186,21 @@ body {
 .rank_score {
   flex: 1;
   text-align: right;
+}
+
+.custom_alert {
+  padding: 20px;
+  border: solid 1px;
+  position: absolute;
+  z-index: 100;
+  background-color: rgb(32, 48, 27);
+  border: solid 3px rgb(97, 148, 82);
+  color: white;
+  opacity: 0;
+  max-width: 500px;
+  transition: 0.3s linear;
+  pointer-events: none;
+}
+.alert_content {
+  font-size: 12px;
 }

@@ -1,11 +1,11 @@
-loginAndRegister 登录/注册 fb
+loginAndRegister 登录/注册 fb POST
 {
     "username": "123",
     "password": "123123123"
 }
 
 
-getUserInfo 用户信息 bf
+用户信息 bf
 {
     "status":"success,fail",
     "data": {
@@ -28,22 +28,23 @@ getUserInfo 用户信息 bf
     "info": ""
 }
 
-getRanking 世界排行榜 bf
+getRanking 世界排行榜 bf GET
 {
     "ranking":[{
         "order":"",
+        "uid":"",
         "username":"",
         "grade":""
     }],
 }
 
-addAchievement 成就达成 fb
+addAchievement 成就达成 fb POST
 {
     "uid":"",
     "achivement": "(aid)"
 }
 
-saveProcess 存档 fb
+saveProcess 存档 fb POST
 {
     "uid":"",
     "process":{

@@ -173,7 +173,7 @@ let addMoveToHook = () => {
       hookDiv.style.left = x + "px";
       hookDiv.style.top = y + "px";
       if (getGold) {
-        getGold.style.backgroundColor = "#f12711";
+        getGold.style.backgroundColor = "#fff";
         getGold.style.left =
           removePx(getGold.style.left) + Math.cos(theta) * speed + "px";
         getGold.style.top =
@@ -186,6 +186,11 @@ let addMoveToHook = () => {
         speed = globalSpeed;
         if (getGold) {
           score += Math.floor(parseInt(getGold.getAttribute("size")) / 10) * 10;
+          let scoreDiv = document.getElementById("score");
+          scoreDiv.style.color = "#fff";
+          setTimeout(() => {
+            scoreDiv.style.color = "var(--theme-green)";
+          }, 300);
           document.getElementById("score").innerHTML = score;
           let parent = document.getElementById("mine");
           parent.removeChild(getGold);
@@ -235,13 +240,14 @@ let addMoveToHook = () => {
       speed = globalSpeed;
       target *= 2;
       level += 1;
-      document.getElementById("score").innerHTML = score;
+      // document.getElementById("score").innerHTML = score;
       document.getElementById("level").innerHTML = level;
       document.getElementById("target").innerHTML = target;
       addGold(30);
-
-      saveProcess("fakeuid", { score, target, level });
+      let userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+      saveProcess(userInfo.uid, { score, target, level });
       handleProcess({ score, target, level });
+      renderRanking();
     }
   }, 10);
 };
@@ -251,7 +257,6 @@ let initScore = () => {
   target = parseInt(userInfo.process.target);
   level = parseInt(userInfo.process.level);
   score = parseInt(userInfo.process.score);
-  console.log("userInfo.process.target:", userInfo.process.target);
 };
 
 let handleProcess = () => {
@@ -266,15 +271,17 @@ export let handleAchievement = (aid) => {
     let currAch = allAchievements.find((ach) => ach.aid == aid);
     userInfo.acheivement.unshift(currAch);
     sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
+    acheivementAlert(currAch);
     renderAchievements();
-    addAchievement(aid);
+    addAchievement(userInfo.uid, aid);
   } else {
     if (!userInfo.acheivement.find((ach) => ach.aid == aid)) {
       let currAch = allAchievements.find((ach) => ach.aid == aid);
       userInfo.acheivement.unshift(currAch);
       sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
+      acheivementAlert(currAch);
       renderAchievements();
-      addAchievement(aid);
+      addAchievement(userInfo.uid, aid);
     }
   }
 };
@@ -284,12 +291,23 @@ let hasAchievement = (aid) => {
   if (!userInfo.acheivement) return false;
   return userInfo.acheivement.find((ach) => ach.aid === aid);
 };
-
+let acheivementAlert = (ach) => {
+  let alertDiv = document.querySelector(".custom_alert");
+  let content = alertDiv.querySelector(".alert_content");
+  content.textContent = `${ach.title}: ${ach.detail}`;
+  alertDiv.style.opacity = 1;
+  alertDiv.style.zIndex = 100;
+  setTimeout(() => {
+    alertDiv.style.opacity = 0;
+    alertDiv.style.zIndex = -1;
+  }, 3000);
+};
 window.onload = () => {
   renderUser();
   renderAchievements();
   renderRanking();
   renderProcess();
+
   initScore();
   addGold(30);
   addMoveToHook();
