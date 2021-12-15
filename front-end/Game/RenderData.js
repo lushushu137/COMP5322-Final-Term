@@ -1,4 +1,14 @@
 import { getRanking } from "../queries.js";
+function compare(a, b) {
+  let comparison = 0;
+  if (a.grade > b.grade) {
+    comparison = -1;
+  } else if (a.grade < b.grade) {
+    comparison = 1;
+  }
+  return comparison;
+}
+
 export let renderUser = () => {
   let userInfo = sessionStorage.getItem("userInfo");
   if (userInfo) {
@@ -62,12 +72,26 @@ export let renderRanking = () => {
 
   let rankingListDiv = document.querySelector(".rankingList_itemList");
   rankingListDiv.innerHTML = "";
+
+  let userRank = {
+    username: userInfo.username,
+    uid: userInfo.uid,
+    grade: parseInt(userInfo.process.score),
+  };
+
+  if (!rankingList.find((user) => user.uid == userRank.uid)) {
+    rankingList.push(userRank);
+    sessionStorage.setItem("rankingList", rankingList);
+  }
+  console.log("userRank:", userRank);
+  rankingList.sort(compare);
+  console.log("rankingList:", rankingList);
   for (let i = 0; i < rankingList.length; i++) {
-    rank_num.textContent = rankingList[i].order;
+    rank_num.textContent = i + 1;
     rank_name.textContent = rankingList[i].username;
     rank_score.textContent = rankingList[i].grade;
     if (userInfo.uid == rankingList[i].uid) {
-      console.log("userInfo.uid == rankingList[i].uid:", userInfo.uid);
+      // rank_item.textContent = userInfo.process.score;
       rank_item.style.borderLeft = "solid 5px";
     } else {
       rank_item.style.borderLeft = "none";

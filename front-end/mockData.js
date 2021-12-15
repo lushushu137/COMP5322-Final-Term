@@ -14,18 +14,16 @@ export let mockUserData = {
   info: "",
 };
 
-export let rankingList = [
+export let mockRankingList = [
   {
-    order: "1",
-    username: "Chen Yufeng 888",
-    uid: "888",
-    grade: "1000",
+    username: "User 1",
+    uid: "1",
+    grade: 1000,
   },
   {
-    order: "2",
-    username: "Chen Yufeng 999",
-    uid: "999",
-    grade: "800",
+    username: "User 2",
+    uid: "2",
+    grade: 800,
   },
-  { order: "3", uid: "233", username: "Chen Yufeng233", grade: "600" },
+  { uid: "3", username: "User 3", grade: 200 },
 ];

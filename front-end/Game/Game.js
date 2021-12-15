@@ -186,6 +186,11 @@ let addMoveToHook = () => {
         speed = globalSpeed;
         if (getGold) {
           score += Math.floor(parseInt(getGold.getAttribute("size")) / 10) * 10;
+          let userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+          saveProcess(userInfo.uid, { score, target, level });
+          handleProcess({ score, target, level });
+          renderRanking();
+
           let scoreDiv = document.getElementById("score");
           scoreDiv.style.color = "#fff";
           setTimeout(() => {
@@ -245,8 +250,6 @@ let addMoveToHook = () => {
       addGold(30);
       let userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
       saveProcess(userInfo.uid, { score, target, level });
-      handleProcess({ score, target, level });
-      renderRanking();
     }
   }, 10);
 };
@@ -264,7 +267,7 @@ let handleProcess = () => {
   sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
   renderProcess();
 };
-export let handleAchievement = (aid) => {
+let handleAchievement = (aid) => {
   let userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   if (userInfo.acheivement.length == 0) {
     let currAch = allAchievements.find((ach) => ach.aid == aid);

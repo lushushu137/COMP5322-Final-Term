@@ -54,7 +54,9 @@ body {
   border: solid 100px;
   border-bottom: solid 150px;
   border-image: url("../src/computer_border.png") 35%;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.466);
+
+  /* background-color: black; */
   width: 800px;
   height: 800px;
   display: flex;
@@ -79,11 +81,15 @@ body {
 #userName {
   margin: 20px;
   font-weight: 800;
+  max-width: 160px;
+  word-wrap: break-word;
 }
 .card {
   padding: 20px;
   margin: 20px;
   border-radius: 10px;
+  border: solid 1px;
+  background-color: rgba(0, 0, 0, 0.76);
 }
 .achievementList {
 }
@@ -181,7 +187,8 @@ body {
 }
 
 .rank_name {
-  width: 200px;
+  max-width: 160px;
+  word-wrap: break-word;
 }
 
 .rank_score {
@@ -204,4 +211,11 @@ body {
 }
 .alert_content {
   font-size: 12px;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -10;
 }

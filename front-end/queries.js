@@ -1,4 +1,4 @@
-import { mockUserData, rankingList } from "./mockData.js";
+import { mockUserData, mockRankingList } from "./mockData.js";
 
 export let login = function (data) {
   fetch("../../back-end/Login/CheckLoginorRegister.php", {
@@ -8,10 +8,10 @@ export let login = function (data) {
       "Content-Type": "application/json",
     },
   })
-    .then((res) => res.json())
     .then((res) => {
       // Mock the data
       res = mockUserData;
+      res.data.username = data.username;
       if (res.status === "success") {
         sessionStorage.setItem("userInfo", JSON.stringify(res.data));
         window.location.href = "../Game/Game.html";
@@ -22,21 +22,21 @@ export let login = function (data) {
     .catch((error) => {
       console.log("Error:", error);
       // Test process
-      window.location.href = "../Game/Game.html";
+      // window.location.href = "../Game/Game.html";
     });
 };
 
 export let getRanking = function () {
-  fetch("../back-end/getRanking.php", {
+  fetch("../../back-end/Login/getRanking.php", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   })
-    .then((res) => res.json())
+    // .then((res) => res.json())
     .then((rankingList) => {
       // Mock
-      rankingList = rankingList;
+      rankingList = mockRankingList;
       sessionStorage.setItem("rankingList", JSON.stringify(rankingList));
     })
     .catch((error) => {
@@ -48,14 +48,14 @@ export let addAchievement = function (uid, aid) {
     uid: uid,
     aid: aid,
   };
-  fetch("../back-end/addAchievement.php", {
-    method: "POST",
-    body: JSON.stringify(data),
+  fetch("../../back-end/Login/addAchievement.php", {
+    method: "GET",
+    // body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
     },
   })
-    .then((res) => res.json())
+    // .then((res) => res.json())
     .then((response) => {
       console.log("response:", response);
     })
@@ -69,19 +69,19 @@ export let saveProcess = function (uid, process) {
     uid: uid,
     process: process,
   };
-  fetch("../back-end/saveProcess.php", {
-    method: "POST",
-    body: JSON.stringify(data),
+  fetch("../../back-end/Login/saveProcess.php", {
+    method: "GET",
+    // body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
     },
   })
     .then((res) => res.json())
     .then((response) => {
-      console.log("response:", response);
+      // console.log("response:", response);
     })
     .catch((error) => {
-      console.log("data:", data);
-      console.log("Error:", error);
+      // console.log("data:", data);
+      // console.log("Error:", error);
     });
 };
