@@ -47,44 +47,44 @@ export let getRanking = function () {
   //   });
 };
 export let addAchievement = function (uid, aid) {
-  let data = {
-    uid: uid,
-    aid: aid,
-  };
-  fetch("../../back-end/Login/addAchievement.php", {
-    method: "GET",
-    // body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    // .then((res) => res.json())
-    .then((response) => {
-      console.log("response:", response);
-    })
-    .catch((error) => {
-      console.log("data:", data);
-      console.log("Error:", error);
-    });
+  // let data = {
+  //   uid: uid,
+  //   aid: aid,
+  // };
+  // fetch("../../back-end/Login/addAchievement.php", {
+  //   method: "GET",
+  //   // body: JSON.stringify(data),
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // })
+  //   // .then((res) => res.json())
+  //   .then((response) => {
+  //     console.log("response:", response);
+  //   })
+  //   .catch((error) => {
+  //     console.log("data:", data);
+  //     console.log("Error:", error);
+  //   });
 };
 export let saveProcess = function (uid, process) {
-  let data = {
-    uid: uid,
-    process: process,
-  };
-  fetch("../../back-end/Login/saveProcess.php", {
-    method: "GET",
-    // body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((response) => {
-      // console.log("response:", response);
-    })
-    .catch((error) => {
-      // console.log("data:", data);
-      // console.log("Error:", error);
-    });
+  // let data = {
+  //   uid: uid,
+  //   process: process,
+  // };
+  // fetch("../../back-end/Login/saveProcess.php", {
+  //   method: "GET",
+  //   // body: JSON.stringify(data),
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // })
+  //   .then((res) => res.json())
+  //   .then((response) => {
+  //     // console.log("response:", response);
+  //   })
+  //   .catch((error) => {
+  //     // console.log("data:", data);
+  //     // console.log("Error:", error);
+  //   });
 };

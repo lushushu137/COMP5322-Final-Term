@@ -83,9 +83,7 @@ export let renderRanking = () => {
     rankingList.push(userRank);
     sessionStorage.setItem("rankingList", rankingList);
   }
-  console.log("userRank:", userRank);
   rankingList.sort(compare);
-  console.log("rankingList:", rankingList);
   for (let i = 0; i < rankingList.length; i++) {
     rank_num.textContent = i + 1;
     rank_name.textContent = rankingList[i].username;
